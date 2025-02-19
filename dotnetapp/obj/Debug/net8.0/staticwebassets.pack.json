@@ -1,0 +1,25 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\SHOPPINGAPP\\dotnetapp\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\dotnetapp.bundle.scp.css",
+      "PackagePath": "staticwebassets\\dotnetapp.bundle.scp.css"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.dotnetapp.props",
+      "PackagePath": "build\\dotnetapp.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.dotnetapp.props",
+      "PackagePath": "buildMultiTargeting\\dotnetapp.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.dotnetapp.props",
+      "PackagePath": "buildTransitive\\dotnetapp.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.dotnetapp.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

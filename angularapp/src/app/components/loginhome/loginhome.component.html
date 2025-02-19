@@ -1,0 +1,8 @@
+<div class="poster-div">
+    <div *ngIf="role==='Admin'"><app-adminnav></app-adminnav></div>
+    <div *ngIf="role==='User'"><app-usernav></app-usernav></div>
+    <div class="d-flex flex-column justify-content-center align-items-center pt-5 inner-div">
+        <h1 class="text-center pt-5">Hi! {{Username | titlecase}}</h1>
+        <p class="text-center text-white w-75 fs-5">Welcome to Shop App, your bridge to making a difference with ease. Explore causes, contribute, and collaborate to create lasting change with our powerful tools for transparency and impact tracking.</p>    
+    </div>
+</div>

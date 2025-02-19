@@ -1,0 +1,46 @@
+<app-adminnav></app-adminnav>
+<div class="container mt-5">
+    <h2 class="text-center mb-4">{{ isEditMode ? 'Edit Product' : 'Add New Product' }}</h2>
+    <form #productForm="ngForm" (ngSubmit)="onSubmit(productForm)">
+        <div class="form-group">
+            <label for="name">Title<span style="color:red;">*</span></label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Product Name" [(ngModel)]="newProduct.productName" #name="ngModel" required>
+            <div class="text-danger" *ngIf="name?.touched && name?.invalid">
+                Product Name is required.
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="description">Description<span style="color:red;">*</span></label>
+            <input type="text" class="form-control" id="description" name="description" placeholder="Description" [(ngModel)]="newProduct.description" #description="ngModel" required>
+            <div class="text-danger" *ngIf="description?.touched && description?.invalid">
+                <div *ngIf="description?.errors?.['required']">Description is required.</div>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="price">Price<span style="color:red;">*</span></label>
+            <input type="number" class="form-control" id="price" name="price" placeholder="Price" [(ngModel)]="newProduct.price" #price="ngModel" required min="1">
+            <div class="text-danger" *ngIf="price?.invalid && price?.touched">
+                <div *ngIf="price?.errors?.['required']">Price is required.</div>
+            </div>
+        </div>
+
+        <div class="text-danger" *ngIf="!isFormValid()">
+            All fields are required.
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block" style="margin-top: 10px;">
+            {{ isEditMode ? 'Update' : 'Submit' }}
+        </button>
+
+        <button *ngIf="isEditMode" class="btn btn-secondary btn-block" (click)="cancelEdit()" style="margin-top: 10px;">Cancel</button>
+    </form> 
+
+    <div *ngIf="isUserDialogOpen" class="dialog">
+        <div class="dialog-content">
+            <p><b>{{ messageValue }}</b></p>
+            <button class="btn btn-danger" (click)="closeUserDialog()">Close</button>
+        </div>
+    </div>
+</div>

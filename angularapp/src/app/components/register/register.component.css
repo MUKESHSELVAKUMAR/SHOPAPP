@@ -1,0 +1,77 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  section.h-100 {
+    position: relative;
+    height: 100vh; /* Full viewport height */
+    overflow: hidden; /* Prevent scrollbars from appearing */
+  }
+  
+  .background-image {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-size: cover; /* Cover the entire section */
+    background-attachment: fixed; /* Ensure the image stays fixed */
+    filter: blur(5px); /* Apply blur only to this pseudo-element */
+    z-index: -1; /* Ensure the background is below the content */
+  }
+  
+  .form-container {
+    position: relative;
+    z-index: 10; /* Ensure the container is above the background image */
+    background-color: rgba(255, 255, 255, 0.8); /* White background with transparency */
+    padding: 20px;
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3); /* Add a more pronounced shadow */
+    max-width: 600px; /* Set a max width for medium layout */
+    margin: auto; /* Center the container */
+    animation: pop-up 0.5s ease-in-out; /* Add animation */
+  }
+  
+  .input-container {
+    position: relative;
+    width: 100%; /* Full width */
+  }
+  
+  .eye-button {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: transparent; /* Transparent background */
+    cursor: pointer; /* Pointer cursor */
+  }
+  
+  .error-message {
+    margin-top: 5px;
+  }
+  
+  /* Additional styles for form elements */
+  input.form-control,
+  select.form-control {
+    border-radius: 5px; /* Rounded corners */
+  }
+  
+  input:focus,
+  select:focus {
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Focus shadow */
+  }
+  
+  /* Animation for container pop-up */
+  @keyframes pop-up {
+    0% {
+      transform: scale(0.9);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }

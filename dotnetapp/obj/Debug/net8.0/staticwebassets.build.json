@@ -1,0 +1,50 @@
+{
+  "Version": 1,
+  "Hash": "GPmt7KlaICB4T5zrIV/PvbPBrgJ8fQsnvGyW4P6jFxk=",
+  "Source": "dotnetapp",
+  "BasePath": "_content/dotnetapp",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [
+    {
+      "Identity": "C:\\SHOPPINGAPP\\dotnetapp\\obj\\Debug\\net8.0\\scopedcss\\bundle\\dotnetapp.styles.css",
+      "SourceId": "dotnetapp",
+      "SourceType": "Computed",
+      "ContentRoot": "C:\\SHOPPINGAPP\\dotnetapp\\obj\\Debug\\net8.0\\scopedcss\\bundle\\",
+      "BasePath": "_content/dotnetapp",
+      "RelativePath": "dotnetapp.styles.css",
+      "AssetKind": "All",
+      "AssetMode": "CurrentProject",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "ScopedCss",
+      "AssetTraitValue": "ApplicationBundle",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\SHOPPINGAPP\\dotnetapp\\obj\\Debug\\net8.0\\scopedcss\\bundle\\dotnetapp.styles.css"
+    },
+    {
+      "Identity": "C:\\SHOPPINGAPP\\dotnetapp\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\dotnetapp.bundle.scp.css",
+      "SourceId": "dotnetapp",
+      "SourceType": "Computed",
+      "ContentRoot": "C:\\SHOPPINGAPP\\dotnetapp\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\",
+      "BasePath": "_content/dotnetapp",
+      "RelativePath": "dotnetapp.bundle.scp.css",
+      "AssetKind": "All",
+      "AssetMode": "Reference",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "ScopedCss",
+      "AssetTraitValue": "ProjectBundle",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\SHOPPINGAPP\\dotnetapp\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\dotnetapp.bundle.scp.css"
+    }
+  ]
+}

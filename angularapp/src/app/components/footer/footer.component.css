@@ -1,0 +1,31 @@
+
+a{
+    color: #555555e8;
+    text-decoration: none;
+
+}
+li{
+    list-style: none;
+}
+
+p{
+    color: #555555e8;
+}
+li p{
+    margin: 0;
+}
+.shop-btn{
+    background-color: #109ec2;
+}
+.main-footer{
+    padding: 0px 140px;
+    background-color: #f2f2f2;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 1rem;
+  color: var(--light-text);
+  font-size: 0.9rem;
+}

@@ -1,0 +1,33 @@
+<app-usernav></app-usernav>
+<div class="container mt-1">
+    <h1 class="text-center" *ngIf="carts.length > 0">ORDER SUCCESSFUL  <img src="../../../assets/images/ORDERSUC.jpg" alt="shoplogo" width="110px" height="80px" class="ms-0 mt-1" height="80px" style="border-radius: 90%;"></h1><hr>
+    <div class="x">
+        <div class="row">
+            <div class="col-md-3 mx-auto">
+                <div class="card-sl">
+                <div class="card-heading">
+                    <span class="status-icon">
+                    <h2 class="bi bi-person-fill-check approved">Order Summary</h2>
+                    </span>
+                    <br>
+                </div>
+                    <div class="card-text" *ngFor="let cart of carts; index as i">
+                        <p><strong>Title : </strong>{{cart.productName}}</p>
+                        <p><strong>Quantity : </strong> [{{cart.quantity}}]</p>
+                        <!-- <h4 class="id">Order Id - {{ transactionId }}</h4> -->
+                        <hr>
+                    </div>
+                    <h4 class="id">Order Id - {{ transactionId }}</h4>
+                    <h3 class="text-center" *ngIf="carts.length > 0">Thanks for the Order! Keep Shopping.</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-button mt-3 mb-3">
+        <button class="btn btn-outline-primary" >
+            <i class="bi bi-pencil-square"></i><a class="nav-link active hover-not" routerLink="/main">DONE</a>
+        </button>
+    </div>
+    <div><app-footer></app-footer></div>
+</div>
+<!-- <div><app-footer></app-footer></div> -->

@@ -1,0 +1,44 @@
+h1{
+    /* color:#f8b864; */
+    color: #e6da39;
+    font-size: 85px;
+    margin-top: 8rem;
+    font-weight: 400;
+}
+.inner-div{
+    height: 50%;
+}
+.poster-div {
+    height:100vh;
+    background-image: url('../../../assets/images/PEXEL.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+}
+
+.card{
+    width: 28%;
+    border: 0;
+    background: none;
+    overflow: hidden;
+    transition: scale 0.2s ease-in;
+}
+
+.card:hover{
+    scale: 1.02;
+}
+
+img{
+    width: 100%;
+    border-radius: 10px;
+}
+
+.card-div{
+    background-color: rgba(255, 255, 255, 0.681);
+    margin-top: -70px;
+    border-radius: 10px;
+}
+.card-section{
+    padding-bottom: 80px;
+}
