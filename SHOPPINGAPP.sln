@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.002.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dotnetapp", "dotnetapp\dotnetapp.csproj", "{68F31145-1CA0-45A1-A9E7-AF41D00FD5A3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dotnetapp (1)", "dotnetapp", "{CB1E7947-0C0E-4042-AF72-F9F78E511095}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Models", "Models", "{A3D52022-F854-48ED-BCC4-C9E0E3754AF2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{68F31145-1CA0-45A1-A9E7-AF41D00FD5A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68F31145-1CA0-45A1-A9E7-AF41D00FD5A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68F31145-1CA0-45A1-A9E7-AF41D00FD5A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68F31145-1CA0-45A1-A9E7-AF41D00FD5A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68817DF0-D441-489C-94B5-D68DB8764A45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68817DF0-D441-489C-94B5-D68DB8764A45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68817DF0-D441-489C-94B5-D68DB8764A45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68817DF0-D441-489C-94B5-D68DB8764A45}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A3D52022-F854-48ED-BCC4-C9E0E3754AF2} = {CB1E7947-0C0E-4042-AF72-F9F78E511095}
+		{68817DF0-D441-489C-94B5-D68DB8764A45} = {A3D52022-F854-48ED-BCC4-C9E0E3754AF2}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8F52FC6E-8D52-43D8-9B07-10A0BB1B86B0}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,49 @@
+<app-adminnav> </app-adminnav>
+<div class="container mt-1" *ngIf="isLoggedIn()">
+    <h1 class="text-center">All Products</h1><hr> 
+    <div class="row mb-3">
+        <input type="text" placeholder="Search By Product Name" [(ngModel)]="searchTitle" (input)="searchProduct()" class="rounded border-0 bg-light w-25 p-2 search-input">
+    </div>
+    <div class="row">
+        <div class="col-md-12 table-responsive">
+            <table *ngIf="products.length > 0" class="table table-hover rounded shadow overflow-hidden text-center">
+                <thead class="thead-gradient text-center">
+                    <tr>
+                        <th>S.No</th>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Price</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngIf="(!products || products.length==0)">
+                        <td colspan="11" class="text-center">
+                            No data available at the moment.
+                        </td>
+                    </tr>
+                    <tr *ngFor="let product of products,index as i">
+                        <td>{{i+1}}</td>
+                        <td>{{product.productName}}</td>
+                        <td>{{product.description}}</td>
+                        <td>{{product.price}}</td>   
+                        <td>
+                            <div class="d-inline-block">
+                                <button class="btn btn-edit" (click)="updateProduct(product.productId ?? 0)">Update</button>
+                            </div>
+                            <div class="d-inline-block ms-2">
+                                <button class="btn btn-delete" (click)="deleteProduct(product.productId ?? 0)">Delete</button>
+                            </div>        
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="loader" class="loader">
+    <div class="spinner-grow text-warning" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>          
+</div>

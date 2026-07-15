@@ -1,0 +1,90 @@
+trigger:
+  branches:
+    include:
+      - feature/testapp
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  buildConfiguration: 'Release'
+  azureSubscription: 'azure-subscription-conn'
+  appServiceName: 'Testapps'
+  dotnetProjectPath: 'dotnetapp/dotnetapp.csproj'
+  angularAppPath: 'angularapp'
+
+stages:
+- stage: Build
+  jobs:
+  - job: BuildAngularAndDotNet
+    steps:
+
+    # ---- Angular build ----
+    - task: NodeTool@0
+      inputs:
+        versionSpec: '18.x'
+      displayName: 'Install Node.js'
+
+    - script: |
+        cd $(angularAppPath)
+        npm install
+        chmod +x node_modules/.bin/*
+        npx ng build
+      displayName: 'Build Angular app'
+
+    # Angular 17's default builder outputs to dist/angularapp/browser.
+    # Copy that build output into the .NET project's wwwroot before publish.
+    - script: |
+        mkdir -p dotnetapp/wwwroot
+        if [ -d "$(angularAppPath)/dist/angularapp/browser" ]; then
+          cp -r $(angularAppPath)/dist/angularapp/browser/* dotnetapp/wwwroot/
+        else
+          cp -r $(angularAppPath)/dist/angularapp/* dotnetapp/wwwroot/
+        fi
+      displayName: 'Copy Angular build into wwwroot'
+
+    # ---- .NET build/publish ----
+    - task: UseDotNet@2
+      inputs:
+        version: '8.x'
+      displayName: 'Install .NET 8 SDK'
+
+    - task: DotNetCoreCLI@2
+      inputs:
+        command: 'restore'
+        projects: '$(dotnetProjectPath)'
+      displayName: 'Restore NuGet packages'
+
+    - task: DotNetCoreCLI@2
+      inputs:
+        command: 'publish'
+        publishWebProjects: false
+        projects: '$(dotnetProjectPath)'
+        arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+        zipAfterPublish: true
+      displayName: 'Publish .NET app (includes wwwroot)'
+
+    - task: PublishBuildArtifacts@1
+      inputs:
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+        ArtifactName: 'drop'
+      displayName: 'Publish build artifact'
+
+- stage: Deploy
+  dependsOn: Build
+  jobs:
+  - deployment: DeployToAppService
+    environment: 'shoppingapp-test'
+    pool:
+      vmImage: 'ubuntu-latest'
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - task: AzureWebApp@1
+            inputs:
+              azureSubscription: '$(azureSubscription)'
+              appType: 'webAppLinux'
+              appName: '$(appServiceName)'
+              package: '$(Pipeline.Workspace)/drop/*.zip'
+            displayName: 'Deploy to Azure App Service (Testapps)'

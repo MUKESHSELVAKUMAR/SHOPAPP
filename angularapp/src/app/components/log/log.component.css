@@ -1,0 +1,120 @@
+/* General Styles */
+body {
+    background-color: #f8f9fa;
+  }
+  
+  .gradient-form {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .card {
+    border: none;
+    border-radius: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  h2 {
+    color: #343a40;
+    font-size: 2em;
+    margin-bottom: 20px;
+  }
+  
+  h4.gradient-custom {
+    background: linear-gradient(to right, blue, #ff4b2b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .form-outline {
+    margin-bottom: 1.5rem;
+  }
+  
+  .input-container {
+    position: relative;
+  }
+  
+  .input-container .form-control {
+    padding-right: 45px;
+  }
+  
+  .eye-button {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: none;
+    cursor: pointer;
+  }
+  
+  .eye-icon {
+    color: #6c757d;
+  }
+  
+  .error-message {
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+    color: red;
+  }
+  
+  .btn {
+    font-size: 1rem;
+    padding: 0.75rem 1.25rem;
+    border-radius: 0.25rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.3s;
+  }
+  
+  .btn-primary {
+    background-color: #007bff;
+    border: none;
+  }
+  
+  .btn-primary:hover {
+    background-color: #0056b3;
+  }
+  
+  .btn[disabled] {
+    background-color: #6c757d;
+    cursor: not-allowed;
+  }
+  
+  /* Layout Styles */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: #e3f2f5;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-body {
+    padding: 2rem;
+  }
+  
+  .text-center p a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .text-center p a:hover {
+    color: #0056b3;
+  }
+  
+  .image-container {
+    flex: 1;
+    height: 100%;
+  }
+  
+  .img-fluid {
+    max-width: 90%;
+    height: auto;
+    border-radius: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 15px; /* Ensure the image does not touch the container border */
+  }  
