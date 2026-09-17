@@ -9,7 +9,7 @@ pool:
 variables:
   buildConfiguration: 'Release'
   azureSubscription: 'azure-subscription-conn'
-  appServiceName: 'Testapps'
+  appServiceName: 'Test-apps'
   dotnetProjectPath: 'dotnetapp/dotnetapp.csproj'
   angularAppPath: 'angularapp'
 
@@ -87,4 +87,4 @@ stages:
               appType: 'webAppLinux'
               appName: '$(appServiceName)'
               package: '$(Pipeline.Workspace)/drop/*.zip'
-            displayName: 'Deploy to Azure App Service (Testapps)'
+            displayName: 'Deploy to Azure App Service (Test-apps)'

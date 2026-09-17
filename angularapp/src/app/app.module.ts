@@ -16,12 +16,12 @@ import { ShophomeComponent } from './components/shophome/shophome.component';
 import { UserviewcartComponent } from './components/userviewcart/userviewcart.component';
 import { AdminhomeComponent } from './components/adminhome/adminhome.component';
 import { HomeComponent } from './components/home/home.component';
-import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { RegisterComponent } from './components/register/register.component';
 import { AdminaddprodComponent } from './components/adminaddprod/adminaddprod.component';
 import { LogComponent } from './components/log/log.component';
 import { OrderComponent } from './components/order/order.component';
-
+import { AuthInterceptor } from './interceptors/auth.interceptor';
+ 
 @NgModule({
   declarations: [
     AdminnavComponent,
@@ -37,10 +37,8 @@ import { OrderComponent } from './components/order/order.component';
     HomeComponent,
     RegisterComponent,
     AdminaddprodComponent,
-    OrderComponent,
-    LogComponent
+    LogComponent,
   ],
-  
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -53,7 +51,6 @@ import { OrderComponent } from './components/order/order.component';
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
-  ],
-  bootstrap: [AppComponent]
+  ]
 })
-export class AppModule { }
+export class AppModule {}

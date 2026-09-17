@@ -11,7 +11,7 @@ import { Login } from '../models/login';
 
 export class AuthService {
 
-  public apiUrl=environment.backendUrl;
+  public apiUrl = environment.backendUrl;
   private userRoleSubject = new BehaviorSubject<string>('');
   private userIdSubject = new BehaviorSubject<number>(0);
  
@@ -19,7 +19,6 @@ export class AuthService {
  
   register(user:User):Observable<any>
   {
-    console.log(user);
     return this.http.post<any>(`${this.apiUrl}/api/register`,user);
   }
  
@@ -28,7 +27,6 @@ export class AuthService {
     return this.http.post<any>(`${this.apiUrl}/api/login`, login).pipe(
       tap(response => {
         if (response && response.token) {
-          console.log(response.token);
           localStorage.setItem('authToken', response.token);
           const tokenPayload = JSON.parse(atob(response.token.split('.')[1]));
           
@@ -73,7 +71,8 @@ export class AuthService {
  
   isLoggedIn()
   {
-    if(localStorage.getItem('userRole')==="Admin" || localStorage.getItem('userRole')==="User")
+    if(localStorage.getItem('userRole') === "admin" || localStorage.getItem('userRole') === "user"
+    || localStorage.getItem('userRole') === "Admin" || localStorage.getItem('userRole') === "User")
     {
       return true;
     }
@@ -93,6 +92,5 @@ export class AuthService {
   logout()
   {
     localStorage.clear();
-    console.log("logged out");
   }
 }

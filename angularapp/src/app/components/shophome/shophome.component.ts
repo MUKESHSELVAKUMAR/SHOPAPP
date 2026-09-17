@@ -7,6 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Cart } from '../../models/cart';
 import { CartService } from '../../services/cart.service';
 import Swal from 'sweetalert2';
+import { ProductHubService } from '../../services/product-hub.service';
 
 @Component({
   selector: 'app-shophome',
@@ -42,22 +43,28 @@ export class ShophomeComponent implements OnInit {
   id:number=0;
   show:boolean = false;
 
-  constructor(private service: ShopService, private cartService: CartService, private builder:FormBuilder, private router:Router, private activateRoute: ActivatedRoute, private http: HttpClient) {
+  constructor(private service: ShopService, private cartService: CartService, private builder:FormBuilder, private router:Router, private activateRoute: ActivatedRoute, private http: HttpClient, private productHub: ProductHubService) {
     this.productForm=builder.group({
       quantity:builder.control("",[Validators.required, Validators.min(1)])
     })
    }
    
-  ngOnInit(): void {
+  async ngOnInit() {
     const userId = localStorage.getItem('userId');
-    if (userId) {
-      this.id = +userId;
-    } else {
-      this.id = 0;
-    }
-    console.log("id: " + this.id);
+    this.id = userId ? +userId : 0;
     this.loadProducts();
-    
+  
+    try {
+      await this.productHub.startConnection();
+      console.log('SignalR connection started successfully');
+    } catch (err) {
+      console.error('SignalR connection FAILED:', err);
+    }
+  
+    this.productHub.onProductEvent((eventType, body) => {
+      console.log('Live event received:', eventType, body);
+      this.loadProducts();
+    });
   }
   
   loadProducts():void{
@@ -79,7 +86,6 @@ export class ShophomeComponent implements OnInit {
   public showProduct(productId:number){
     this.service.getProductbyId(productId).subscribe(data=>{
       this.selectedProduct=data;
-      console.log("product"+JSON.stringify(this.selectedProduct));
      
     });
     this.show=true;
@@ -89,18 +95,15 @@ export class ShophomeComponent implements OnInit {
     if(this.productForm.valid){
       this.selectedProduct=product;
       this.selectedProduct.UserId=this.id;
-      console.log("called service");
       this.cartService.getProductsbyUserId(this.id).subscribe(cartItems => {
         const existingProduct = cartItems.find((item: Cart) => item.productName === this.selectedProduct.productName);
   
         if (existingProduct) {
-          // If product exists, update its quantity
           existingProduct.quantity += this.productForm.value.quantity;
           this.cartService.updateProduct(existingProduct.cartId,existingProduct).subscribe((result) => {
             this.cart = result;
           });
         } else {
-          // If product does not exist, add it to the cart
           this.cart = {
             productId:this.selectedProduct.productId,
             productName: this.selectedProduct.productName,

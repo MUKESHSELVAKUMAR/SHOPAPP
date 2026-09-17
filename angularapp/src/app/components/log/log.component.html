@@ -48,6 +48,12 @@
                     <div class="form-group" *ngIf="!loginForm.invalid">
                       <button class="form-control btn btn-success">Login</button>
                     </div>
+                    <div class="mt-3 text-center">
+                      <hr />
+                      <button type="button" class="sso btn btn-success" (click)="loginWithMicrosoft()">
+                        Single Sign-On [SSO]
+                      </button>
+                    </div>
                     <p class="text-center">Don't have an account? <a routerLink="/reg">Register here</a></p>
                   </div>
                 </form>

@@ -26,7 +26,6 @@ export class OrderComponent implements OnInit {
     if (user) {
     this.userId = +user;
     }
-    console.log("User ID:", this.userId);
     this.loadProducts(this.userId);
 
     this.transactionId = this.payment.transactionID;

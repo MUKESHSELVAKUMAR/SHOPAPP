@@ -1,7 +1,6 @@
 import {
   Title
-} from "./chunk-FPUYUH6A.js";
-import "./chunk-TGVFEQZS.js";
+} from "./chunk-TZC55MQJ.js";
 import {
   DOCUMENT,
   HashLocationStrategy,
@@ -10,7 +9,7 @@ import {
   LocationStrategy,
   PathLocationStrategy,
   ViewportScroller
-} from "./chunk-FFY7VSBW.js";
+} from "./chunk-HVVZ6UU2.js";
 import {
   APP_BOOTSTRAP_LISTENER,
   APP_INITIALIZER,
@@ -78,7 +77,7 @@ import {
   ɵɵloadQuery,
   ɵɵqueryRefresh,
   ɵɵsanitizeUrlOrResourceUrl
-} from "./chunk-PCGAWVWW.js";
+} from "./chunk-X56YGAOJ.js";
 import {
   BehaviorSubject,
   ConnectableObservable,
@@ -118,7 +117,7 @@ import {
   __async,
   __spreadProps,
   __spreadValues
-} from "./chunk-WDMUDEB6.js";
+} from "./chunk-35ENWJA4.js";
 
 // node_modules/@angular/router/fesm2022/router.mjs
 var PRIMARY_OUTLET = "primary";
@@ -5557,83 +5556,83 @@ function mapToResolve(provider) {
   return (...params) => inject(provider).resolve(...params);
 }
 var VERSION = new Version("17.3.12");
+
 export {
+  PRIMARY_OUTLET,
+  convertToParamMap,
+  defaultUrlMatcher,
+  UrlTree,
+  UrlSegmentGroup,
+  UrlSegment,
+  UrlSerializer,
+  DefaultUrlSerializer,
+  createUrlTreeFromSnapshot,
+  EventType,
+  RouterEvent,
+  NavigationStart,
+  NavigationEnd,
+  NavigationCancellationCode,
+  NavigationSkippedCode,
+  NavigationCancel,
+  NavigationSkipped,
+  NavigationError,
+  RoutesRecognized,
+  GuardsCheckStart,
+  GuardsCheckEnd,
+  ResolveStart,
+  ResolveEnd,
+  RouteConfigLoadStart,
+  RouteConfigLoadEnd,
+  ChildActivationStart,
+  ChildActivationEnd,
+  ActivationStart,
+  ActivationEnd,
+  Scroll,
+  OutletContext,
+  ChildrenOutletContexts,
+  RouterState,
   ActivatedRoute,
   ActivatedRouteSnapshot,
-  ActivationEnd,
-  ActivationStart,
-  BaseRouteReuseStrategy,
-  ChildActivationEnd,
-  ChildActivationStart,
-  ChildrenOutletContexts,
+  RouterStateSnapshot,
+  RouterOutlet,
+  ɵEmptyOutletComponent,
+  TitleStrategy,
   DefaultTitleStrategy,
-  DefaultUrlSerializer,
-  EventType,
-  GuardsCheckEnd,
-  GuardsCheckStart,
-  NavigationCancel,
-  NavigationCancellationCode,
-  NavigationEnd,
-  NavigationError,
-  NavigationSkipped,
-  NavigationSkippedCode,
-  NavigationStart,
-  NoPreloading,
-  OutletContext,
-  PRIMARY_OUTLET,
-  PreloadAllModules,
-  PreloadingStrategy,
   ROUTER_CONFIGURATION,
-  ROUTER_INITIALIZER,
   ROUTES,
-  ResolveEnd,
-  ResolveStart,
-  RouteConfigLoadEnd,
-  RouteConfigLoadStart,
+  loadChildren,
+  UrlHandlingStrategy,
   RouteReuseStrategy,
+  BaseRouteReuseStrategy,
+  afterNextNavigation,
   Router,
-  RouterEvent,
   RouterLink,
   RouterLinkActive,
-  RouterLink as RouterLinkWithHref,
-  RouterModule,
-  RouterOutlet,
+  PreloadingStrategy,
+  PreloadAllModules,
+  NoPreloading,
   RouterPreloader,
-  RouterState,
-  RouterStateSnapshot,
-  RoutesRecognized,
-  Scroll,
-  TitleStrategy,
-  UrlHandlingStrategy,
-  UrlSegment,
-  UrlSegmentGroup,
-  UrlSerializer,
-  UrlTree,
-  VERSION,
-  convertToParamMap,
-  createUrlTreeFromSnapshot,
-  defaultUrlMatcher,
+  provideRouter,
+  provideRoutes,
+  withInMemoryScrolling,
+  withEnabledBlockingInitialNavigation,
+  withDisabledInitialNavigation,
+  withDebugTracing,
+  withPreloading,
+  withRouterConfig,
+  withHashLocation,
+  withNavigationErrorHandler,
+  withComponentInputBinding,
+  withViewTransitions,
+  ROUTER_PROVIDERS,
+  RouterModule,
+  ROUTER_INITIALIZER,
+  mapToCanMatch,
   mapToCanActivate,
   mapToCanActivateChild,
   mapToCanDeactivate,
-  mapToCanMatch,
   mapToResolve,
-  provideRouter,
-  provideRoutes,
-  withComponentInputBinding,
-  withDebugTracing,
-  withDisabledInitialNavigation,
-  withEnabledBlockingInitialNavigation,
-  withHashLocation,
-  withInMemoryScrolling,
-  withNavigationErrorHandler,
-  withPreloading,
-  withRouterConfig,
-  withViewTransitions,
-  ɵEmptyOutletComponent,
-  ROUTER_PROVIDERS as ɵROUTER_PROVIDERS,
-  afterNextNavigation as ɵafterNextNavigation,
-  loadChildren as ɵloadChildren
+  VERSION
 };
 /*! Bundled license information:
 
@@ -5644,4 +5643,4 @@ export {
    * License: MIT
    *)
 */
-//# sourceMappingURL=@angular_router.js.map
+//# sourceMappingURL=chunk-4OEK5VZ3.js.map

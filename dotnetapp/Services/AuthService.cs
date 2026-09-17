@@ -5,6 +5,7 @@ using System.Text;
 using dotnetapp.Models;
 using Microsoft.IdentityModel.Tokens;
 using dotnetapp.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace dotnetapp.Services
 {
@@ -67,6 +68,34 @@ namespace dotnetapp.Services
                 return (0, "User already exists");
             }
             return (0, "User creation failed! Please check user details and try again.");
+        }
+
+        public async Task<(int, string, User)> SsoLogin(string name, string email, string oid, string role)
+        {
+            if (string.IsNullOrEmpty(email))
+            {
+                return (0, "Email cannot be null.", null);
+            }
+
+            var existingUser = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
+            if (existingUser != null)
+            {
+                return (1, "User signed in successfully via SSO.", existingUser);
+            }
+        
+            var newUser = new User
+            {
+                Username = name,
+                Email = email,
+                PhoneNumber = "SSO",
+                Password = "SSO",
+                UserRole = role
+            };
+        
+            _context.Users.Add(newUser);
+            await _context.SaveChangesAsync();
+        
+            return (1, "User created successfully via SSO.", newUser);
         }
 
         public async Task<(int, string)> Login(LoginModel model)

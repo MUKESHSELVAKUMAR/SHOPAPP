@@ -4,6 +4,7 @@ import { Shop } from '../../models/shop';
 import { ShopService } from '../../services/shop.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { MsalService } from '@azure/msal-angular';
 
 @Component({
   selector: 'app-adminaddprod',
@@ -21,7 +22,7 @@ export class AdminaddprodComponent {
 
   product:Shop[]=[]
   formSubmitted: boolean=false;
-  constructor(private service:ShopService, private router:Router,private route:ActivatedRoute) { }
+  constructor(private service:ShopService, private router:Router,private route:ActivatedRoute, private msalService: MsalService) { }
  
   id:number = 0;
   formError: boolean = false;
@@ -46,8 +47,8 @@ export class AdminaddprodComponent {
         this.loadProduct(this.productId);
       }
     });
-    this.loadProducts();
   }
+  
   loadProducts():void{
     this.service.getAllProducts().subscribe(
       res=>{
@@ -82,22 +83,22 @@ export class AdminaddprodComponent {
       this.formError = true;
     }
   }
-  
 
-  addProduct(form: any) {
+  async addProduct(form: any) {
     if (form.valid) {
       this.showSuccessModal = true;
-      this.newProduct.UserId=this.id;
-      this.service.addProduct(this.newProduct).subscribe((result) => {
-      });
+      this.newProduct.UserId = this.id;
+      
+      await this.service.addProduct(this.newProduct);
+  
       Swal.fire({
         title: 'Success!',
         text: 'Product successfully added.',
         icon: 'success',
         confirmButtonText: 'OK'
       }).then(() => {
-        this.router.navigate(['/adminproduct'])
-      })
+        // this.router.navigate(['/adminproduct']);
+      });
     }
   }
 

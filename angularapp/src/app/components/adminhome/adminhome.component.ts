@@ -5,6 +5,7 @@ import { ShopService } from '../../services/shop.service';
 import Swal from 'sweetalert2';
 import { AuthService } from '../../services/auth.service';
 import { CartService } from '../../services/cart.service';
+import { ProductHubService } from '../../services/product-hub.service';
 
 @Component({
   selector: 'app-adminhome',
@@ -23,22 +24,28 @@ export class AdminhomeComponent implements OnInit {
     description : '',
     price : 0,
   }
-
   id:number=0;
  
-  constructor(private service: ShopService, private cartService: CartService, private authService: AuthService, private router:Router) { }
+  constructor(private service: ShopService, private cartService: CartService, private authService: AuthService, private router:Router, private productHub: ProductHubService) { }
  
-  ngOnInit(): void {
+  async ngOnInit() {
     const userId = localStorage.getItem('userId');
-    if (userId) {
-      this.id = +userId;
-    } else {
-      this.id = 0;
-    }
+    this.id = userId ? +userId : 0;
     this.loadProducts();
+    
+    try {
+      await this.productHub.startConnection();
+      console.log('SignalR connection started successfully');
+    } catch (err) {
+      console.error('SignalR connection FAILED:', err);
+    }
+  
+    this.productHub.onProductEvent((eventType, body) => {
+      console.log('Live event received:', eventType, body);
+      this.loadProducts();
+    });
   }
 
-  
   loadProducts()
   {
     this.service.getProductsbyUserId(this.id).subscribe((response) => {
@@ -98,47 +105,47 @@ export class AdminhomeComponent implements OnInit {
  
   confirm(): void {
     this.service.deleteProduct(this.productId).subscribe(()=>
-      console.log("inside confirm")
+      this.loadProducts()
     );
     this.cartService.deleteCart(this.productId).subscribe(()=>
-      console.log("inside confirm")
+      this.loadProducts()
     );
-}
-cancel(): void {
-  this.showEditModal=false;
-}
-
-searchTitle:string='';
-searchProduct(){
-  if(this.searchTitle.trim().length!=0){
-    this.products=this.products.filter(p=>{
-      return p.productName?.toLowerCase().includes(this.searchTitle.toLowerCase());
-    })
-  }else{
-    this.loadProducts();
   }
-}
- 
-save()
-{
-  this.service.updateProduct(this.productId, this.product).subscribe(
-    (response)=>{
-    console.log("updated product");
-        this.showEditModal=false;
-        Swal.fire({
-          toast: true,
-          position: 'top',
-          showConfirmButton: false,
-          icon: 'success',
-          timerProgressBar:false,
-          timer: 2000,
-          title: 'Updated successfully',
-        }).then(()=>{
-          this.loadProducts();
-        });
+
+  cancel(): void {
+    this.showEditModal=false;
+  }
+
+  searchTitle:string='';
+  searchProduct(){
+    if(this.searchTitle.trim().length!=0){
+      this.products=this.products.filter(p=>{
+        return p.productName?.toLowerCase().includes(this.searchTitle.toLowerCase());
+      })
+    }else{
+      this.loadProducts();
     }
-  )
-}
+  }
+  
+  save()
+  {
+    this.service.updateProduct(this.productId, this.product).subscribe(
+      (response)=>{
+          this.showEditModal=false;
+          Swal.fire({
+            toast: true,
+            position: 'top',
+            showConfirmButton: false,
+            icon: 'success',
+            timerProgressBar:false,
+            timer: 2000,
+            title: 'Updated successfully',
+          }).then(()=>{
+            this.loadProducts();
+          });
+      }
+    )
+  }
 
   isLoggedIn() {
     return this.authService.isLoggedIn();

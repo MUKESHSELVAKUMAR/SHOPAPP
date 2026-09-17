@@ -23,6 +23,6 @@ namespace dotnetapp.Data
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Shop>() .Property(e => e.productId) .ValueGeneratedOnAdd();
 
-            }
+        }
     }
 }

@@ -4,7 +4,8 @@
 
 export const environment = {
     production: false,
-    backendUrl:'http://localhost:5122',
+    backendUrl: 'http://localhost:5122',
+    apiUrl: 'https://testapps-cahabehzbfdrbefv.centralus-01.azurewebsites.net'
 };
   
   /*

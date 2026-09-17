@@ -34,7 +34,6 @@ export class UserviewcartComponent implements OnInit {
     if (user) {
     this.userId = +user;
     }
-    console.log("User ID:", this.userId);
     this.loadProducts(this.userId);
     window.paypal.Buttons({style: {
       layout: 'horizontal',
@@ -80,16 +79,11 @@ export class UserviewcartComponent implements OnInit {
     this.service.getProductsbyUserId(userId).subscribe(data => {
       this.carts = data;
       this.carts.forEach(cart => {
-        console.log(cart.quantity);
-        console.log(cart.price);
         if (cart.quantity !== undefined && cart.price !== undefined) {
           this.unitcost=cart.quantity*cart.price;
           this.totalcost+=this.unitcost;
         }  
       });
-      console.log(this.unitcost);
-      console.log(this.totalcost);
-      console.log("Fetched Products:", this.carts);
     }, (error) => {
       console.error("Error fetching cart:", error);
     });
@@ -157,14 +151,14 @@ export class UserviewcartComponent implements OnInit {
 
   proceedPayment(){
     this.router.navigate(['/order']);
-    // this.service.clearCart(this.userId).subscribe(
-    //   () => {
-    //     Swal.fire('Deleted!', 'Your product has been deleted.', 'success');
-    //   },
-    //   (error) => {
-    //     console.error("Error deleting product:", error);
-    //   }
-    // );
+    this.service.clearCart(this.userId).subscribe(
+      () => {
+        Swal.fire('Deleted!', 'Your product has been deleted.', 'success');
+      },
+      (error) => {
+        console.error("Error deleting product:", error);
+      }
+    );
   }
 
 }

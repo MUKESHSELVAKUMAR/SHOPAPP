@@ -3,6 +3,7 @@ import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MsalService } from '@azure/msal-angular';
 
 @Component({
   selector: 'app-log',
@@ -17,7 +18,7 @@ export class LogComponent {
   role: string = '';
   showPassword: boolean = false;
  
-  constructor(private authService: AuthService, private router: Router, private builder: FormBuilder) {
+  constructor(private authService: AuthService, private router: Router, private builder: FormBuilder, private msalService: MsalService) {
     this.loginForm = builder.group({
       email: builder.control("", [Validators.required, Validators.pattern("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$")]),
       password: builder.control("", Validators.required)
@@ -38,14 +39,12 @@ export class LogComponent {
   addlogin() {
     if (this.loginForm.valid) {
       this.authService.login(this.loginForm.value).subscribe((res) => {
-        console.log(res);
         localStorage.setItem("Token", res.token);
         this.authService.isRole();
         const storedRole = localStorage.getItem('userRole');
         if(storedRole){
           this.role = storedRole.toLowerCase();
         }
-        console.log(this.role);
         Swal.fire({
           title: 'Success!',
           text: 'Login Successful!',
@@ -73,5 +72,9 @@ export class LogComponent {
         });
       });
     }
+  }
+
+   loginWithMicrosoft() {
+    this.msalService.loginRedirect();
   }
 }

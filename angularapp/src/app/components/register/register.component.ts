@@ -61,7 +61,6 @@ export class RegisterComponent implements OnInit {
   registerUser(){
     if (this.registerForm.valid) {
      this.authService.register(this.registerForm.value).subscribe((res)=>{
-       console.log(res);
        this.router.navigate(["/log"]);
        Swal.fire({
          title: 'Success!',

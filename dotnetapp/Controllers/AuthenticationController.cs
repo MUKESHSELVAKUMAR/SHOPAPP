@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using dotnetapp.Models;
 using dotnetapp.Services;
+using System.Security.Claims;
 
 namespace dotnetapp.Controllers
 {
@@ -37,6 +39,35 @@ namespace dotnetapp.Controllers
             }
 
             return Unauthorized(responseMessage);
+        }
+
+        /// <summary>
+        /// Handles sso-login requests.
+        /// </summary>
+        [HttpGet("sso-login")]
+        [Authorize(AuthenticationSchemes = "AzureAd")]
+        public async Task<IActionResult> SsoLogin()
+        {
+            var name = User.FindFirst("name")?.Value ?? User.Identity?.Name;
+            var email = User.FindFirst(ClaimTypes.Email)?.Value;
+            var oid = User.FindFirst("oid")?.Value;
+            var role = User.IsInRole("Admin") ? "Admin" : "User";
+
+            (int statusCode, string responseMessage, User user) = await _authService.SsoLogin(name, email, oid, role);
+
+            if (statusCode == 1)
+            {
+                return Ok(new
+                {
+                    authMethod = "sso",
+                    name = name,
+                    email = email,
+                    userId = user.UserId,
+                    role = role
+                });
+            }
+
+            return BadRequest(new { message = responseMessage });
         }
 
         /// <summary>
